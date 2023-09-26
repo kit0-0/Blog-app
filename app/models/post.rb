@@ -8,11 +8,12 @@ class Post < ApplicationRecord
   attribute :comments_counter, :integer, default: 0
   attribute :likes_counter, :integer, default: 0
 
-  after_create :update_posts_counter
-  after_destroy :update_posts_counter
+  after_save :update_post_counter
 
-  def update_posts_counter
-    author.update(posts_counter: author.posts.count)
+  private
+
+  def update_post_counter
+    author.increment!(:posts_counter)
   end
 
   def five_most_recent_comments
