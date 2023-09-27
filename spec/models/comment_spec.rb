@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:user) { User.create(name: 'Alice') } 
-  let(:post) { user.posts.create(title: 'Sample Post') } 
+  let(:user) { User.create(name: 'Alice') }
+  let(:post) { user.posts.create(title: 'Sample Post') }
 
   describe 'validations' do
     it 'should be valid with valid attributes' do
@@ -14,7 +14,6 @@ RSpec.describe Comment, type: :model do
       comment = post.comments.build(author: nil)
       expect(comment).to_not be_valid
     end
-
   end
 
   describe 'after_save callback' do
