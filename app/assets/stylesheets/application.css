@@ -1,15 +1,99 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* User Styles */
+
+.custom-user-image {
+  width: 200px;
+}
+
+.custom-user-box {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.custom-user-photo {
+  width: 4rem;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.custom-user-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  margin-left: 0.5rem;
+}
+
+.custom-user-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.custom-posts-count {
+  font-size: 14px;
+}
+
+/* Post Styles */
+
+.custom-user-post {
+  border: black solid 2px;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.custom-post {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-post-interactions {
+  display: flex;
+  font-size: small;
+  gap: 5px;
+  justify-content: flex-end;
+  border: 1px;
+}
+
+/* Pagination Styles */
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-pagination-btn {
+  margin: 1rem auto;
+  padding: 1rem;
+  box-shadow: 5px 5px;
+}
+
+/* General Styles */
+
+.custom-back-btn {
+  margin-bottom: 1rem;
+}
+
+.custom-bio {
+  border: black solid 2px;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.custom-post-container {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
