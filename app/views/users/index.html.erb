@@ -1,7 +1,12 @@
-<h1>list of all users</h1>
-
 <ul>
   <% @users.each do |user| %>
-    <li><%= link_to user.name, user_path(user) %></li>
+    <li>
+      <a href="<%= user_posts_path(user) %>">
+        <div class="custom-user-box">
+          <%= render partial: 'user_helper/user_photo', locals: { user: user } %>
+          <%= render partial: 'user_helper/user_details', locals: { user: user } %>
+        </div>
+      </a>
+    </li>
   <% end %>
 </ul>
