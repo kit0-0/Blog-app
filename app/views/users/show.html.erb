@@ -1,4 +1,26 @@
-<h1>User Profile</h1>
-<p>Name: <%= @user.name %></p>
-<p>Photo: <%= @user.photo %></p>
-<p>Bio: <%= @user.bio %></p>
+<a href="<%= user_posts_path(@user) %>">
+  <button class="custom-back-btn">⬅</button>
+</a>
+<div class="custom-user-box">
+  <%= render partial: 'user_helper/user_photo', locals: { user: @user } %>
+  <%= render partial: 'user_helper/user_details', locals: { user: @user } %>
+</div>
+<div class="custom-bio">
+  <h3>Bio</h3>
+  <p>
+    <%= @user.bio %>
+  </p>
+</div>
+<% @user.recent_posts.each do |post| %>
+  <div class="custom-post custom-bio">
+    <h3>Post <%= raw "#" + post.id.to_s %></h3>
+    <p><%= post.text %></p>
+    <div class='custom-post-interactions'>
+      <span>Comments: <%= post.comments_counter %>,</span>
+      <span>Likes: <%= post.likes_counter %></span>
+    </div>
+  </div>
+<% end %>
+<a href="<%= user_posts_path(@user) %>">
+  <button class="custom-pagination">See all posts</button>
+</a>

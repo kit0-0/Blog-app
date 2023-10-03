@@ -1,5 +1,25 @@
-<h1>Post by <%= @user.name %></h1>
-<h2><%= @post.title %></h2>
-<p><%= @post.text %></p>
-<p>Comments: <%= @post.comments_counter %></p>
-<p>Likes: <%= @post.likes_counter %></p>
+<a href="<%= user_posts_path(@user) %>">
+  <button class="custom-back-btn">⬅</button>
+</a>
+<div class="custom-post-container">
+  <h2>Post <%= "#" + @post.id.to_s %> by <%= @user.name %></h2>
+  <div class='custom-post-interactions'>
+    <span>Comments: <%= @post.comments_counter %>,</span>
+    <span>Likes: <%= @post.likes_counter %></span>
+  </div>
+  <p><%= @post.text %></p>
+</div>
+<div class="custom-post-container">
+<h3>Comments:</h3>
+<% if @post.comments.present? %>
+  
+  <% @post.comments.each do |comment| %>
+    <div class="custom-post-comments">
+      <span><%= comment.author.name %>:</span>
+      <span><%= comment.text %></span>
+    </div>
+  <% end %>
+<% else %>
+  <p>No comments yet.</p>
+<% end %>
+</div>
