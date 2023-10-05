@@ -1,0 +1,20 @@
+<div class="page-container">
+  <a href="<%= user_post_path(@user, @post) %>" class="back-link">
+    <button id="back-btn">⬅</button>
+  </a>
+
+  <h1>Create a New Comment</h1>
+  <h2>Post <%= @post.id %></h2>
+  <h2>Current User <%= @user.name %></h2>
+
+  <%= form_with model: @comment, url: user_post_comments_path(@user, @post), local: true, html: { class: 'comment-form' } do |form| %>
+    <div class="field">
+      <%= form.label :text, class: 'form-label' %>
+      <%= form.text_area :text, class: 'form-textarea' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Create Comment', class: 'submit-btn' %>
+    </div>
+  <% end %>
+</div>
