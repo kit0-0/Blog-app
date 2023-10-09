@@ -1,31 +1,22 @@
 class CommentsController < ApplicationController
-  before_action :find_user
-  before_action :find_post
-
   def new
-    @comment = @post.comments.new
+    @comment = Comment.new
   end
 
   def create
-    @comment = @post.comments.new(comment_params)
-    @comment.author = @user
+    @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
+    @comment.user_id = current_user.id
+    @comment.post_id = @post.id
+
     if @comment.save
-      flash[:notice] = 'Comment created successfully.'
-      redirect_to user_post_path(@user, @post)
+      redirect_to user_post_path(user_id: @post.author_id, id: @post.id)
     else
-      render 'new'
+      render :new, alert: 'An error has occurred while creating the comment'
     end
   end
 
   private
-
-  def find_user
-    @user = current_user
-  end
-
-  def find_post
-    @post = Post.find(params[:post_id])
-  end
 
   def comment_params
     params.require(:comment).permit(:text)
