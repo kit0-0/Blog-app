@@ -1,0 +1,11 @@
+<%= link_to user do %>
+  <li class="user-card p-5 flex items-center justify-center bg-blue-100 rounded-lg shadow-md hover:shadow-lg">
+    <div class="user-img mr-4">
+      <img src="<%= user.photo %>" alt="<%= user.name %>'s Photo" class="user-photo rounded-full w-20 h-20">
+    </div>
+    <div class="user-info bg-gray-200 border-2 border-gray-300 rounded-md p-4 hover:bg-gray-300 transition duration-300 ease-in-out">
+      <h2 class="font-bold text-xl text-gray-800"><%= user.name %></h2>
+      <p class="post-counter font-semibold text-sm text-gray-500">Number of posts: <%= user.post_counter %></p>
+    </div>
+  </li>
+<% end %>

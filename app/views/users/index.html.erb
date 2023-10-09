@@ -1,12 +1,7 @@
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <a href="<%= user_posts_path(user) %>">
-        <div class="custom-user-box">
-          <%= render partial: 'user_helper/user_photo', locals: { user: user } %>
-          <%= render partial: 'user_helper/user_details', locals: { user: user } %>
-        </div>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<h1 class="user-title text-center font-bold text-5xl my-10 text-indigo-700">Explore Our Community</h1>
+
+<div class="user-container bg-gray-100 p-8 rounded-lg shadow-md">
+    <ul class="grid grid-cols-1 gap-8">
+        <%= render partial: 'user', collection: @users %>
+    </ul>
+</div>

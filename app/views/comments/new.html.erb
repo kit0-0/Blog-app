@@ -1,20 +1,15 @@
-<div class="page-container">
-  <a href="<%= user_post_path(@user, @post) %>" class="back-link">
-    <button id="back-btn">⬅</button>
-  </a>
+<section class="new-post-section">
+    <div class="new-post-container bg-white rounded-md shadow-md p-4 border-2">
+        <h1 class="text-2xl font-semibold mb-4">Add a new comment</h1>
+        <%= form_with model: @comment, url: user_post_comments_path do |c| %>
+            <div class="form-group mb-4">
+                <%= c.label :text, class: "block text-lg font-semibold px-3 py-1"%>
+                <%= c.text_area :text, class: "border border-gray-300 rounded-md w-full px-3 py-2"%>
+            </div>
 
-  <h1>Create a New Comment</h1>
-  <h2>Post <%= @post.id %></h2>
-  <h2>Current User <%= @user.name %></h2>
-
-  <%= form_with model: @comment, url: user_post_comments_path(@user, @post), local: true, html: { class: 'comment-form' } do |form| %>
-    <div class="field">
-      <%= form.label :text, class: 'form-label' %>
-      <%= form.text_area :text, class: 'form-textarea' %>
+            <div class="flex justify-start">
+                <%= c.submit "Submit", class: "bg-black text-white hover:text-white hover:font-semibold border-2 px-4 py-2 rounded-md"%>
+            </div>
+        <% end %>
     </div>
-
-    <div class="actions">
-      <%= form.submit 'Create Comment', class: 'submit-btn' %>
-    </div>
-  <% end %>
-</div>
+</section>
