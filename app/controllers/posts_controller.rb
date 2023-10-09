@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[show like unlike]
 
   def index
-    @posts = @user.posts
+    @posts = @user.posts.includes(:comments)
   end
 
   def show; end
