@@ -98,6 +98,13 @@ rspec spec --format documentation
 👤 Kiko
 - GitHub: [&nbsp; &nbsp; @githubhandle](https://github.com/kit0-0)
 
+👤 **Khanh**
+
+- GitHub: [khanh-devos](https://github.com/khanh-devos)
+
+👤 **Omar**
+
+- GitHub: [@Aqurds](https://github.com/Aqurds)
 
 <!-- FUTURE FEATURES -->
 
