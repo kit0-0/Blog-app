@@ -1,32 +1,34 @@
-<a href="<%= user_posts_path(@user) %>">
-  <button class="custom-back-btn">⬅</button>
-</a>
-<div class="custom-post-container">
-  <h2>Post <%= "#" + @post.id.to_s %> by <%= @user.name %></h2>
-  <div class='custom-post-interactions'>
-    <span>Comments: <%= @post.comments_counter %>,</span>
-    <span>Likes: <%= @post.likes_counter %></span>
-  </div>
-  <p><%= @post.text %></p>
-  <div class='custom-like-section'>
-    <%= button_to "Like", like_user_post_path(@user, @post), method: :post, remote: true %>
-</div>
-
-</div>
-<div class="custom-post-container">
-<h3>Comments:</h3>
-<% if @post.comments.present? %>
-  
-  <% @post.comments.each do |comment| %>
-    <div class="custom-post-comments">
-      <span><%= comment.author.name %>:</span>
-      <span><%= comment.text %></span>
+<div class="post-container w-[60%] mx-auto bg-white rounded-md shadow-md p-6 my-8">
+    <div class="post-header flex justify-between items-center mb-4">
+        <div>
+            <h1 class="font-semibold text-2xl mb-2"><%= @post.title %> By <span><%= @post.author.name %></span></h1>
+            <ul class="flex space-x-4 text-sm">
+                <li class="font-semibold">Comments: <%= @post.comment_counter %> </li>
+                <li class="font-semibold">Likes: <%= @post.like_counter %> </li>
+            </ul>
+        </div>
     </div>
-  <% end %>
-<% else %>
-  <p>No comments yet.</p>
-<% end %>
+
+    <div class="post-body bg-gray-200 border-2 my-5 rounded-md p-4 hover:bg-gray-300 transition duration-300 ease-in-out">
+        <%=@post.text%>
+    </div>
+
+    <h4 class="comment-title font-semibold text-lg mb-2">Comments: <%=@count%></h4>
+
+    <div class="comment-container border-2 rounded-md p-4">
+        <% @post.comments.each do |comment| %>
+            <div class="mb-2">
+                <span class="font-semibold"><%= comment.author.name %>:</span>
+                <span class="font-normal"><%= comment.text %></span>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="like-comment-container flex justify-between mt-4">
+        <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |l| %>
+            <%= l.submit "Like", class: "bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold"%>
+        <% end %>
+
+        <%= link_to "Add a comment", new_user_post_comment_path(user_id: @post.author.id, post_id: @post.id), class: 'bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold'%>
+    </div>
 </div>
-<a href="<%= new_user_post_comment_path(@user, @post) %>">
-  <button id="back-btn">Add a comment</button>
-</a>

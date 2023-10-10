@@ -1,35 +1,40 @@
-<a href="<%= users_path() %>">
-  <button class="custom-back-btn">⬅</button>
-</a>
-<ul>
-  <a href="<%= user_path(@user) %>">
-    <div class="custom-user-box">
-      <%= render partial: 'user_helper/user_photo', locals: { user: @user } %>
-      <%= render partial: 'user_helper/user_details', locals: { user: @user } %>
-    </div>
-  </a>
-  <% @posts.each do |post|%>
-    <a href="<%= user_post_path(@user, post) %>">
-      <div class="custom-user-post">
-        <div class="custom-post">
-          <h3>Post <%= raw "#" + post.id.to_s %></h3>
-          <p><%= post.text %></p>
-          <div class='custom-post-interactions'>
-            <span>Comments: <%= post.comments_counter %>,</span>
-            <span>Likes: <%= post.likes_counter %></span>
-          </div>
+<h1 class="user-title font-bold text-4xl my-10 text-center"><%= @user.name %>'s Posts</h1>
+<div class="user-card-container w-[65%] mx-auto flex flex-col items-center">
+    <div class="user-card bg-white rounded-lg shadow-md p-5 mb-8">
+        <div class="user-img">
+            <img src="<%= @user.photo %>" alt="<%= @user.name %>'s Photo" class="user-photo rounded-full w-24 h-24">
         </div>
-        <h3>Comments:</h3>
-        <% post.recent_comments.each do |comment, index| %>
-          <div class="custom-post-comments">
-            <span><%= comment.author.name %>:</span>
-            <span><%= comment.text %></span>
-          </div>
+        <div class="user-info bg-gray-200 border-2 rounded-md mt-4 px-5 hover:bg-gray-300 transition duration-300 ease-in-out">
+            <h2 class="font-bold text-2xl text-gray-800"><%= @user.name %></h2>
+            <h2 class="post-counter font-semibold text-sm text-gray-500">Number of posts: <%= @user.post_counter %></h2>
+        </div>
+    </div>
+    <%= link_to "Add a new post", new_user_post_path(user_id: @user.id), class: "bg-black text-white border-2 px-3 py-1 rounded-md new-post-btn hover:text-white hover:font-semibold w-[150px]" %>
+</div>
+
+<div class="post-container my-10 w-[70%] mx-auto">
+    <% @posts.each do |post| %>
+        <%= link_to user_post_path(user_id: post.author_id, id: post.id) do %>
+            <div class="post-card-container my-10">
+                <div class="post-card bg-gray-200 border-2 my-5 rounded-md w-full hover:bg-gray-300 transition duration-300 ease-in-out">
+                    <h2 class="font-semibold text-lg bg-black text-white px-3 py-2 rounded-t-md"><%= post.title %></h2>
+                    <p class="line-clamp-2 px-4 py-3 text-sm text-gray-800"><%= post.text %></p>
+                    <div class="reactions p-4">
+                        <span class="font-semibold text-sm">Comments <%= post.comment_counter%></span>
+                        <span class="font-semibold text-sm ml-4">Likes: <%= post.like_counter %></span>
+                    </div>
+                </div>
+                <h4 class="comment-title font-semibold mb-2">Comments</h4>
+                <div class="comment-container w-full rounded-md">
+                    <% post.recent_comments.each do |comment| %>
+                        <span class="px-2 py-1 block border-b-2 border-gray-300"><span class="font-semibold"><%= comment.author.name %></span>: <%= comment.text %></span>
+                    <% end %>
+                    
+                </div>
+            </div>
         <% end %>
-      </div>
-    </a>
-  <% end %>
-  <a href="<%= new_user_post_path(@user, @post) %>" class='custom-pagination'>
-    <button class='custom-pagination-btn'>Create new post</button>
-  </a>
-</ul>
+    <% end %>
+     <div class="flex justify-center mt-5">
+        <button class="bg-black text-white hover:text-white hover:font-semibold border-2 px-3 py-1 rounded-md">Pagination</button>
+    </div>
+</div>
