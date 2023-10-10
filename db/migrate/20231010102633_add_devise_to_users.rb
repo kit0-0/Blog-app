@@ -48,5 +48,3 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
     raise ActiveRecord::IrreversibleMigration
   end
 end
-
-
