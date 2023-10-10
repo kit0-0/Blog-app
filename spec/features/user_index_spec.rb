@@ -19,13 +19,11 @@ RSpec.describe 'User index', type: :feature do
     expect(page).to have_text("Jane Smith\nNumber of posts: 3")
   end
 
-
   it 'When I click on a user, it should redirect to user/show page' do
     click_on 'John Doe'
     expect(page).to have_content('John Doe')
     expect(current_path).to eq(user_path(@user1))
   end
-
 
   it 'should return the correct CSS' do
     expect(page).to have_css("img[src*='https://example.com/john-doe.jpg']")

@@ -42,7 +42,6 @@ RSpec.describe 'Post index ' do
     expect(page).to have_content('Likes: 2')
   end
 
-
   it 'can see section for pagination if there are more posts than fit on the view.' do
     expect(page).to have_content('Pagination')
   end
