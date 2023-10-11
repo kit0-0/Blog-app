@@ -11,9 +11,14 @@
 
     <div class="post-body bg-gray-200 border-2 my-5 rounded-md p-4 hover:bg-gray-300 transition duration-300 ease-in-out">
         <%=@post.text%>
+        <% if can? :destroy, @post %>
+            <%= button_to 'Delete', user_post_path(user_id: @post.author_id, id: @post.id),
+                            method: :delete, data: { confirm: 'Are you sure you want to delete this post?' },
+                            class: 'border px-3 py-1 text-white bg-red-500 my-5 hover:bg-red-600' %>
+        <% end %>
     </div>
 
-    <h4 class="comment-title font-semibold text-lg mb-2">Comments: <%=@count%></h4>
+    <h4 class="comment-title font-semibold text-lg mb-2">Comments: <%= @post.comment_counter %></h4>
 
     <div class="comment-container border-2 rounded-md p-4">
         <% @post.comments.each do |comment| %>
@@ -26,9 +31,10 @@
 
     <div class="like-comment-container flex justify-between mt-4">
         <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |l| %>
-            <%= l.submit "Like", class: "bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold"%>
+            <%= l.submit "Like", class: "bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold" %>
         <% end %>
 
-        <%= link_to "Add a comment", new_user_post_comment_path(user_id: @post.author.id, post_id: @post.id), class: 'bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold'%>
+        <%= link_to "Add a comment", new_user_post_comment_path(user_id: @post.author.id, post_id: @post.id),
+                      class: 'bg-black text-white border-2 px-3 py-1 rounded-md hover:text-white hover:font-semibold' %>
     </div>
 </div>
