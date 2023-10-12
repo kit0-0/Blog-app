@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(Admin)
+      admin_dashboard_path
+    elsif resource.is_a?(User)
+      user_dashboard_path
+    else
+      super
+    end
+  end
+
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:name, :email, :bio, :photo, :password, :password_confirmation)
